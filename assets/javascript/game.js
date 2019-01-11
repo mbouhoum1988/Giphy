@@ -6,25 +6,37 @@ function call(){
 
     var clickValue = $(this).attr('data-name');    
     var key ="NjCzUiwS8NUCJXFw4n0siZjGL49zrjFp";
-    var queryURL="https://api.giphy.com/v1/gifs/search?q="+ clickValue +"&api_key=" + key;
+    var queryURL="https://api.giphy.com/v1/gifs/search?q="+ clickValue +"&api_key=" + key +"&limit=10";
 
     $.ajax({
         url : queryURL,
         method : 'get'
     }).then(function(response){
-
+        
+        var number = 10;
         var action = response.data; 
         var results = response.data;
+        console.log(queryURL);
 
-        for(j=0 ; j< 10 ; j++){
+        for(j=0 ; j< number ; j++){
+            var wrapper = $('<div>');
+            wrapper.addClass("image-wrapper");           
+            var label = $('<div>');
+            label.addClass("rating");
+            var img = $('<img>');
+
+            var rating = action[j].rating.toUpperCase();
+            label.text("Rating:" + rating );
             
-            var k = $('<img>');
-            k.addClass('play');
-            var n = action[j].images.downsized_still.url;
-            var m = action[j].images.downsized.url;
-            k.attr('src', n);
-            k.attr('data-url', m);
-            $('#pictures').prepend(k);
+            var still = action[j].images.downsized_still.url;
+            var animated = action[j].images.downsized.url;
+            
+            img.addClass('play');
+            img.attr('src', still);
+            img.attr('data-url', animated);
+
+            wrapper.append(label, img);
+            $('#pictures').prepend(wrapper);
         }
     });
 
@@ -34,11 +46,12 @@ function display(){
 
     $('#name').empty();
     for (var i=0 ; i<list.length; i++){
-        var x = $('<button>');
-        x.addClass('addName');
-        x.attr('data-name', list[i]);
-        x.text(list[i]);
-        $('#name').append(x);
+        var button = $('<button>');
+        button.addClass('addName');
+        button.attr('data-name', list[i]);
+        button.text(list[i]);
+        $('#name').append(button);
+        
     }
 }
 
@@ -48,6 +61,8 @@ $("#submit").click(function(event){
    var inputText = $("#text-input").val().trim();
    list.push(inputText);
    display();
+   $('#text-input').val("");
+
 })
 
 function toggleAnimate(){

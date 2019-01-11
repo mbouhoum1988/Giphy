@@ -1,19 +1,30 @@
 #jum{
-    background: gray;
+    background: blue;
 }
 #par{
     text-align: center;
     margin-bottom: 30px;
     color: #fff;
 }
+img{
+    max-width: 400;
+    height: 250px;
+    margin: 15px;
+    margin-bottom: 10px;
+}
+span{
+    margin-top: 100px;
+}
+button{
+    border-radius: 5px;
+}
 #main button{
-    
-    color: #fff;
-    
+    color: #fff;  
+   
 }
 #name {
     margin: 5px;
-    padding: 5px;
+    padding: 5px;  
 }
 #form{
     background: #fff;
@@ -25,7 +36,16 @@
 }
 #submit{
  margin-top: 10px;
+ border-radius: 5px;
+ margin-bottom: 20px
 }
-#submit{
-    margin-bottom: 20px
+.rating{
+   margin: 10px;
+   margin-left: 20px;
+   color: #000;
+}
+#pictures{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

@@ -16,8 +16,8 @@ function call(){
         var number = 10;
         var action = response.data; 
         var results = response.data;
-        console.log(queryURL);
 
+        $('#pictures').empty();
         for(j=0 ; j< number ; j++){
             var wrapper = $('<div>');
             wrapper.addClass("image-wrapper");           
